@@ -2,6 +2,7 @@
 
 #include "BlueprintsToCpp.h"
 #include "Grabber.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values for this component's properties
 UGrabber::UGrabber()
@@ -10,7 +11,8 @@ UGrabber::UGrabber()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
+	// The TEXT macro makes sure the write string type is used in each platform
+	UE_LOG(LogTemp, Warning, TEXT("Grabber Constructor reporting for duty!"));
 }
 
 
@@ -19,8 +21,7 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	
+	UE_LOG(LogTemp, Warning, TEXT("Grabber BeginPlay"));	
 }
 
 
@@ -29,6 +30,12 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	UE_LOG(LogTemp, Warning, TEXT("Grabber TickerComponent"));
+}
+
+// Created function to get the max grab location.
+FVector UGrabber::GetMaxGrabLocation() const
+{
+	return GetComponentLocation() + UKismetMathLibrary::GetForwardVector(GetComponentRotation()) * MaxGrabDistance;
 }
 
