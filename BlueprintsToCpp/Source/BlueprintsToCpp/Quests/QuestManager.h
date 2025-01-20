@@ -13,6 +13,7 @@ class BLUEPRINTSTOCPP_API AQuestManager : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
+	// Constructor
 	AQuestManager();
 
 protected:
