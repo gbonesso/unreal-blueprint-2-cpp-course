@@ -14,15 +14,24 @@ class BLUEPRINTSTOCPP_API UGrabber : public USceneComponent
 
 public:	
 	// Sets default values for this component's properties
+	// Constructor
 	UGrabber();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	FVector GetMaxGrabLocation() const;
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 		
+// Adding variables
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float MaxGrabDistance = 100.f;
 };
