@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "Grabber.generated.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "Grabber.generated.h" // Always the last include
+
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable )
@@ -24,6 +26,12 @@ protected:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	FVector GetMaxGrabLocation() const;
 
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	FVector GetHoldLocation() const;
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	UPhysicsHandleComponent* GetPhysicsComponent() const;
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
@@ -31,7 +39,9 @@ public:
 		
 // Adding variables
 protected:
-
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float MaxGrabDistance = 100.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float HoldDistance = 100.f;
 };
