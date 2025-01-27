@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
+#include "Components/PrimitiveComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Grabber.generated.h" // Always the last include
 
@@ -31,6 +32,20 @@ protected:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	UPhysicsHandleComponent* GetPhysicsComponent() const;
+
+	// BlueprintImplementableEvent is used to call the function from blueprint
+	// there is no implementation in C++ for this function
+	// Typicaly needs to be overriden in blueprint
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void NotifyQuestActor(AActor* Actor); 
+
+	// BlueprintNativeEvent is used to call the function from blueprint
+	// It has a default implementation in C++
+	// It can be overriden in blueprint and the Blueprint can call the C++ implementation (super)
+	// Doesn't need to be overriden (implemented) in blueprint
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	// & is used for out parameters
+	bool TraceForPhysicsBodies(AActor*& HitActor, UPrimitiveComponent*& HitComponent);
 
 public:	
 	// Called every frame

@@ -49,3 +49,8 @@ UPhysicsHandleComponent* UGrabber::GetPhysicsComponent() const {
 	return GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 }
 
+// The function name has to have "_Implementation" at the end
+bool UGrabber::TraceForPhysicsBodies_Implementation(AActor*& HitActor, UPrimitiveComponent*& HitComponent) {
+	return false;
+}
+
