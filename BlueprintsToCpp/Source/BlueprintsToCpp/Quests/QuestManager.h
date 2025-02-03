@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "QuestManager.generated.h"
+#include "QuestInfo.h"
+#include "QuestManager.generated.h" // This should be the last include
 
 UCLASS()
 class BLUEPRINTSTOCPP_API AQuestManager : public AActor
@@ -23,5 +24,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FQuestInfo> QuestList;
 
 };
