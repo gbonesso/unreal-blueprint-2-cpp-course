@@ -32,6 +32,17 @@ void AQuestManager::Tick(float DeltaTime)
 // _Implementaion is used to define a BP native event in C++
 void AQuestManager::CompleteQuest_Implementation(FName QuestId, bool CompleteWholeQuest)
 {
-	UE_LOG(LogTemp, Warning, TEXT("QuestManager CompleteQuest"));
+	//UE_LOG(LogTemp, Warning, TEXT("QuestManager CompleteQuest"));
+	int32 QuestIndex = GetQuestIndex(QuestId);
+	FQuestInfo Quest = QuestList[QuestIndex];
+	if(CompleteWholeQuest)
+	{
+		QuestList[QuestIndex].Progress = Quest.ProgressTotal;
+	}
+	else
+	{
+		QuestList[QuestIndex].Progress = FMath::Min(Quest.Progress + 1, Quest.ProgressTotal);
+	}
+
 }
 

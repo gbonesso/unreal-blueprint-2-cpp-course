@@ -24,7 +24,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	UFUNCTION(BlueprintPure, BlueprintImplementableEvent)
 	int32 GetQuestIndex(FName QuestId);
 
 public:	
